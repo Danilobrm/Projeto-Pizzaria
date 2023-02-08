@@ -27,9 +27,17 @@ class AuthUserService {
       throw new Error('Password incorrect');
     }
 
-    // gerar um token JWT e devolver os dados do usuario como id, name e email
+    // gerar token para o usuario
+    const token = sign(
+      { name: user.name, email: user.email },
+      process.env.JWT_SECRET,
+      {
+        subject: user.id,
+        expiresIn: '30d',
+      },
+    );
 
-    return { ok: true };
+    return { id: user.id, name: user.name, email: user.email, token: token };
   }
 }
 
