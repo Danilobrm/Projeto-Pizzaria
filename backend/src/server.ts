@@ -15,7 +15,7 @@ app.use('/files', express.static(path.resolve(__dirname, '..', 'tmp')));
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   if (err instanceof Error) {
-    //Se for uma instancia do tipo erro
+    // Se for uma instancia do tipo erro
     return res.status(400).json({
       error: err.message,
     });
